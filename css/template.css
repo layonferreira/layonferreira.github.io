@@ -145,6 +145,21 @@ html > body .table-row.expand {
     border: 4px solid #FFF;
     margin: 0 20px 0 0;
 }
+
+/*profile photo*/
+.profile-photo {
+    background-image: url("../images/me-new.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:top center;
+    max-width: 300px;
+    min-width: 150px;
+    margin: 0 auto;
+}
+
+.profile-photo:hover {
+    background-image: url("../images/me-thumbs-up.png");
+}
 /*INFOBOX*/
 .box {
     border-radius: 3px;
