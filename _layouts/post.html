@@ -1,49 +1,91 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <!--CSS FILES-->
-  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/main.css">
-  <!--JAVASCRIPT FILES-->
-  <!--jquery-->
-  <script type="text/javascript" src="/js/plugins/jquery/jquery-2.1.1.js"></script>
-  <!--bootstrap-->
-  <script type="text/javascript" async="" src="/js/plugins/bootstrap/bootstrap.js"></script>
-  <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body class="template-skin-0 frame">
-  <!--NAVBAR-->
-  {% include navbar.html %}
-  <!--END NAVBAR-->
+---
+layout: default
+disqus: false
+archive: false
+post_class: post-template
+---
 
-  <!--CONTENT-->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        <article class="post">
+<header class="main-header post-head {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
+    <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix">
+        <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Home</a>
+    </nav>
+</header>
 
-          <h1>{{ page.title }}</h1>
+<main class="content" role="main">
 
-          <div class="entry">
-            {{ content }}
-          </div>
+    <article class="post">
 
-          <div class="date">
-            Written on {{ page.date | date: "%B %e, %Y" }} by <a href="/about_me"> Layon Ferreira </a>
-          </div>
+        <header class="post-header">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+                {% if page.categories.size > 0 %}
+                    {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
+                {% endif %}
+            </section>
+        </header>
 
-        </article>
-        <div class="row">
-          <div class="col-xs-12" >
-            <a class="back-link" href = "/"> Go back </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--         <header class="post-header">
+            <a id="blog-logo" href="{{site.url}}">
+                {% if site.logo %}
+                    <img src="{{site.logo}}" alt="{{ site.name }}" />
+                {% else %}
+                    <span class="blog-title">{{ site.name }}</span>
+                {%endif%}
+            </a>
+        </header> -->
 
-  {% include footer.html %}
-  {% include analytics.html %}
-</body>
-</html>
+        <!-- <span class="post-meta">
+            <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+            {% if page.categories.size > 0 %}
+                {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
+            {% endif %}
+        </span> -->
+
+        <!-- <h1 class="post-title">{{ page.title }}</h1> -->
+
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        {% if page.archive %}
+        <section class="archive">
+            <h5>Archive</h5>
+            <ul>
+                {% for post in site.posts %}
+                    <li><span>{{ post.date | date_to_string }}</span>  <a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            {% if site.author %}
+                <figure class="author-image">
+                    <a class="img" href="{{ site.baseurl }}" style="background-position: top center; background-image: url(/assets/images/me-mobile.jpg)">
+                    <span class="hidden">{{site.author}}'s Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> {{ site.author }} </h4>
+                    <!-- Author Bio -->
+                    <p>
+                      A technology and innovation enthusiast.
+                    </p>
+                </section>
+            {% endif %}
+
+            <!-- Share links section -->
+            {% include share.html %}
+
+            <!-- Disqus comments -->
+            {% if page.disqus %}
+                {% include disqus.html %}
+            {% endif %}
+
+        </footer>
+
+    </article>
+
+</main>
