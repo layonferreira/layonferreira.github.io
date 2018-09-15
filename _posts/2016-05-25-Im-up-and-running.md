@@ -7,7 +7,7 @@ published: true
 author: Layon Ferreira
 ---
 
-After several weeks of slow development, I can finally say, "Its alive!!!!" ![Happy Dance]({{ site.baseurl }}assets/images/posts/dance.gif)
+After several weeks of slow development, I can finally say, "Its alive!!!!" ![Happy Dance]({{ site.relative_url }}assets/images/posts/dance.gif)
 
 Not much to write on my first post, besides my special thanks to the
 
