@@ -6,7 +6,7 @@ markdown: kramdown
 highlighter: pygments
 logo: false
 paginate: 15
-baseurl: /
+relative_url: /
 domain_name: 'http://layonferreira.com'
 google_analytics: 'UA-58151624-1'
 gems: [jekyll-paginate]
